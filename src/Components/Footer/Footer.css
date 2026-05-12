@@ -1,0 +1,17 @@
+/* ===== FOOTER ===== */
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #272b33;
+    color: #ffffff;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    min-height: 44px;
+    border-top: 1px solid #3c3e44;
+}
+
+/* Texto del footer */
+footer p {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+}

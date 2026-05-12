@@ -1,0 +1,244 @@
+/* ===== NAVIGATION BAR ===== */
+.nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 1rem;
+    background-color: #23262b;
+    min-height: 60px;
+}
+
+/* ===== HAMBURGER TOGGLE BUTTON ===== */
+.nav-toggle {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-toggle:focus-visible {
+    outline: 2px solid #4e9630;
+    outline-offset: 2px;
+}
+
+/* ===== BACKDROP (OVERLAY OSCURO) ===== */
+.nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 18;
+}
+
+/* ===== DRAWER (MENÚ DESLIZABLE) ===== */
+.nav-drawer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Botón cerrar del drawer (solo visible en móvil) */
+.nav-close {
+    display: none;
+}
+
+/* ===== SCREEN READER ONLY TEXT ===== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ===== HAMBURGER ICON ===== */
+.hamburger {
+    width: 24px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+}
+
+.hamburger span {
+    display: block;
+    height: 2px;
+    background: white;
+    margin: 4px 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Animación hamburger cuando está abierto */
+.hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ===== NAVIGATION LIST ===== */
+.nav-list {
+    display: flex;
+    gap: clamp(0.75rem, 2vw, 1.3rem);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-list li a {
+    color: white;
+    text-decoration: none;
+    font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+    font-weight: 700;
+}
+
+.nav-list li a:hover {
+    color: #4e9630;
+}
+
+/* ===== RESPONSIVE: TABLET/MOBILE (< 992px) ===== */
+@media (max-width: 992px) {
+    /* Mostrar backdrop cuando drawer está abierto */
+    .nav-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Drawer como panel deslizable desde la izquierda */
+    .nav-drawer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(78vw, 320px);
+        height: 100dvh;
+        background: #1f2228;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        transform: translateX(-102%);
+        transition: transform 0.28s ease;
+        z-index: 20;
+        padding: 0.8rem;
+        box-shadow: 8px 0 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .nav-drawer.open {
+        transform: translateX(0);
+    }
+
+    /* Botón cerrar visible en móvil */
+    .nav-close {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 36px;
+        height: 36px;
+        border: none;
+        border-radius: 10px;
+        background: #2f3340;
+        color: #ffffff;
+        font-size: 1.4rem;
+        margin: 0 0 1rem;
+        cursor: pointer;
+    }
+
+    /* Lista vertical en drawer */
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+        width: 100%;
+        margin-top: 0.25rem;
+    }
+
+    .nav-list li {
+        width: 100%;
+    }
+
+    .nav-list li a {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 0.8rem;
+        border-radius: 10px;
+        font-size: 1rem;
+    }
+
+    .nav-list li a:hover {
+        background: #2d313b;
+        color: #ffffff;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Entrada escalonada de los elementos del menú */
+@media (max-width: 992px) {
+    .nav-drawer.open .nav-list li:nth-child(1) {
+        animation: slideInUp 0.28s ease-out 0.05s both;
+    }
+
+    .nav-drawer.open .nav-list li:nth-child(2) {
+        animation: slideInUp 0.28s ease-out 0.1s both;
+    }
+
+    .nav-drawer.open .nav-list li:nth-child(3) {
+        animation: slideInUp 0.28s ease-out 0.15s both;
+    }
+}
+
+@media (min-width: 993px) {
+    .nav-toggle {
+        display: none;
+    }
+
+    .nav-list {
+        display: flex;
+    }
+
+    .nav-backdrop {
+        display: none;
+    }
+
+    .nav-drawer {
+        display: flex;
+        position: static;
+        width: auto;
+        height: auto;
+        transform: none;
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
