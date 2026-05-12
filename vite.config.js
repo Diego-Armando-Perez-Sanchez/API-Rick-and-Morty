@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/API-Rick-and-Morty/",
+  base: "https://diego-armando-perez-sanchez.github.io/API-Rick-and-Morty/",
 })

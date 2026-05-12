@@ -1,5 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Header.css'
+import logo from '../../assets/logo-header.png'
+
 
 /**
  * Encabezado principal de la aplicación
@@ -9,9 +12,9 @@ import './Header.css'
 const Header = () => {
     return (
         <header>
-            <a className="logo-header" href="/" title="Ir a inicio">
-                <img src="./src/assets/logo-header.png" alt="Logo Rick and Morty" />
-            </a>
+            <Link to="/" className="logo-header" aria-label="Ir a inicio">
+                <img src={logo} alt="Logo Rick and Morty" />
+            </Link>
             <h1>Rick and Morty</h1>
         </header>
     )
