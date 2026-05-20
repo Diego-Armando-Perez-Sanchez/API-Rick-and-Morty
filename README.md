@@ -30,7 +30,7 @@ npm --version
 
 ### 1. Clonar o descargar el repositorio
 ```bash
-cd "ruta/al/proyecto/API-RickAndMorty"
+cd "C:\Users\Diego Perez\Documents\TRABAJOS UDLA\PROGRAMACION WEB\API-RickAndMorty"
 ```
 
 ### 2. Instalar dependencias
